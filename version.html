@@ -1,0 +1,47 @@
+<html>
+
+<body>
+  <button id="btn">version</button>
+  <div> value: <span id="ret"></span></div>
+  </div>
+</body>
+<script type=“module”>
+</script>  
+
+
+<!-- <script  type=“module”>   -->
+<script>  
+  import  goto  from './goto.js';
+  const url = goto.urls.watcherLocal;
+  // const url = "https://www.tianqiapi.com/api/?version=v1";
+  document.getElementById("btn").addEventListener("click", () => {
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+    xmlhttp.open("GET", url);
+    // xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+
+    xmlhttp.send();
+    
+    //监听事件
+    xmlhttp.onreadystatechange = function () {
+        if(xmlhttp.readyState === 4&&xmlhttp.status === 200)
+        {
+            console.log(xmlhttp.responseText);
+            document.getElementById("ret").innerHTML = xmlhttp.responseText;
+        }
+        if (xmlhttp.status === 400) {
+            console.log(xmlhttp.responseText)
+            document.getElementById("ret").innerHTML = xmlhttp.responseText;
+        }
+    }
+  });
+
+
+
+</script>
+
+</html>
+
+
+
+
